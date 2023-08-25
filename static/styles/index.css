@@ -1,0 +1,144 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: white;
+    list-style-type: none;
+}
+
+.header {
+    min-height: 400px;
+    background-color: rgb(175, 246, 246);
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 1100px;
+    padding: 0 30px;
+   
+}
+/*
+    ===============
+    Header
+    ===============
+*/
+.header .container{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    color: black;
+    justify-content: space-between;
+}
+
+.container .head-intro h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    line-height: 1.5;
+}
+
+.container .head-intro p {
+    font-size: 20px;
+}
+
+.header img {
+    max-width:  500px;
+    margin-top: 30px;
+    border-radius: 10px;
+}
+
+/*
+    ================
+    Login/SignUp Btns
+    ================
+*/
+.login-signup {
+    display: flex;
+    align-items: center;
+    max-width: 50%;
+    margin: 30px 30px;
+    padding-top: 30px;
+    justify-content: space-between;
+}
+
+.login-signup .login, .login-signup .sign-up {
+    width: 100px;
+    padding: 5px 15px;
+    box-shadow: 1.5px 1.5px grey;
+    border-radius: 10px;
+}
+
+.login a, .sign-up a {
+    text-decoration: none;
+}
+
+.sign-up {
+    background-color: rgb(38, 33, 33);
+}
+
+.sign-up a {
+    color: white;
+}
+
+.sign-up:hover, .login:hover {
+    opacity: .8;
+}
+
+.login {
+    background-color: white;
+}
+
+.login a {
+    color: rgb(38, 33, 33);
+}
+
+
+/*
+    ===========
+    Boxes
+    ==========
+*/
+.boxes .container {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.card {
+    flex: 1;
+    border-radius: 10px;
+    margin: 20px 10px;
+    padding: 15px 20px;
+    background-color: rgb(175, 246, 246);
+    min-height: 150px;
+    box-shadow: 0 3px 5px rgb(0, 0, 0, 0.6);
+}
+
+.card i {
+    margin-right: 10px;
+}
+
+/*
+    ===========
+    Footer
+    ==========
+*/
+footer {
+    margin-top: 20px;
+    background-color: rgb(175, 246, 246) ;
+    width: 100%;
+    min-height: 60px;
+    margin-bottom: 0;
+}
+
+.footer .container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.foot-card {
+    flex: 1;
+    margin-top: 10px;
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles/index.css') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <title>Prime</title>
+    </head>
+
+    <body>
+        <header class="header">
+            <div class="container">
+                <div class="head-intro">
+                    <h1>Prime</h1>
+                    <p>Share your thoughts. Inspire your audience. Impact your world...</p>
+                    <div class="login-signup">
+                        <div class="login"><a href="{{ url_for('auth.login')}}"> Login</a></div>
+                        <div class="sign-up"><a href="{{ url_for('auth.signup')}}">Sign Up</a></div>
+                    </div>
+                </div>
+                <img src="./static/images/woman.jpg">
+            </div>
+        </header>
+
+        <section class="boxes">
+            <div class="container">
+                <div class="card">
+                    <h3><i class="fa fa-child"></i>Find your voice</h3>
+                    <p>
+                        Let the world hear the message you have within. Discover what resonnates with your personality in writings.
+                    </p>
+                </div>
+                <div class="card">
+                    <h3><i class="fa fa-group"></i>Experience Community</h3>
+                    <p>
+                        Make life-long connections in a community of supportive creators and readers
+                    </p>
+                </div>
+                <div class="card">
+                    <h3><i class="fa fa-trophy"></i> Get Recognised</h3>
+                    <p>
+                        Prime recognises the exceptional value you provide and feature you among the top creators
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="foot-card">
+                    <h4>Contact</h4>
+                    <p>Email: hoseafavour123@gmail.com</p>
+                    <p>Phone: +2348139416441</p>
+                </div>
+                <div class="foot-card">
+                    <h4>Opportunities</h4>
+                    <p>Get a chance to join the community hangout of top creators</p>
+                </div>
+                <div class="foot-card">
+                    <h4>Sponsor</h4>
+                    <p>Sponsor our activities</p>
+                </div>
+
+            </div>
+        </footer>
+    </body>
+</html>
