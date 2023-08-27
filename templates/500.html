@@ -1,14 +1,15 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <link rel="stylesheet" href="{{ url_for('static', filename='styles/errorpage.css') }} ">
-    </head>
-    <title>500 error</title>
+{% extends 'base.html' %}
 
-    <body>
-        <h1>Internal Server Error </h1>
-        <div class="container">
-            <img src="../static/images/500.jpg">
-        </div>
-    </body>
+{%block links%}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/errorpage.css') }} ">
+{% endblock %}
+
+{% block content %}
+<main>
+    <div class="container">
+        <h1>Server Error....</h1>
+        <img src="../static/images/500.jpg">
+    </div>
+</main>
+{% endblock %}
 </html>

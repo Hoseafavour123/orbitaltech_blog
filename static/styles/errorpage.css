@@ -1,20 +1,10 @@
 
-body {
-    background-color: rgb(175, 246, 246);
-}
+
 .container {
+    height: calc(100vh - 60px);
     display: flex;
     align-items: center;
+    flex-direction: column;
     justify-content: center;
-    width: 100%;
-    height: 100%;
 
-}
-
-.container img {
-    align-self: center;
-}
-
-h1 {
-    margin-left: 510px;
 }

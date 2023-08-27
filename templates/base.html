@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles/base.css')}} ">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        {% block links %}{% endblock %}
+        <title>{% block title %} Base {% endblock %} </title>
+    </head>
+
+    <body>
+        <header>
+            <div class="navbar">
+                <div class="logo"><h1>Prime</h1></div>
+                <ul class="links">
+                    <li><a href="{{ url_for('main.home')}}">Home</a></li>
+                    <li><a href="{{ url_for('main.posts')}}">Posts</a></li>
+                    <li><a href="{{ url_for('main.publish')}}">Publish</a></li>
+                    <li><a href="{{ url_for('auth.logout')}}">Log Out</a></li>
+                </ul>
+                <div class="toggle_btn">
+                    <i class="fa fa-bars"></i>
+                </div>
+            </div>
+            <div class="dropdown_menu">
+                <li><a href="{{ url_for('main.home')}}">Home</a></li>
+                <li><a href="{{ url_for('main.posts')}}">Posts</a></li>
+                <li><a href="{{ url_for('main.publish')}}">Publish</a></li>
+                <li><a href="{{ url_for('auth.logout')}}">Log Out</a></li>
+            </div>
+        </header>
+
+        {% block content %}
+        {% endblock %}
+
+        <script>
+            const toggleBtn = document.querySelector(".toggle_btn");
+            const toggleBtnIcon = document.querySelector(".toggle_btn i");
+            const dropDownMenu = document.querySelector(".dropdown_menu");
+
+            toggleBtn.onclick = function () {
+                dropDownMenu.classList.toggle("open");
+                const isOpen = dropDownMenu.classList.contains("open");
+
+                toggleBtnIcon.classList = isOpen
+                ? 'fa fa-close'
+                : 'fa fa-bars'
+            }
+        </script>
+    </body>
+</html>

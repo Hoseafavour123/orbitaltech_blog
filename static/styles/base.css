@@ -1,0 +1,135 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/*
+    ======
+    Navbar
+    ======
+*/
+
+.navbar {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(175, 246, 246);
+    align-items: center;
+    position: relative;
+    margin: 0 auto;
+}
+
+.logo {
+    
+}
+
+.logo h1 {
+    font-weight: bold;
+    margin-left: 20px;
+    padding-bottom: 10px;
+}
+
+.navbar ul li {
+    list-style: none;
+}
+
+.links {
+    display: flex;
+    justify-content: space-between;
+}
+
+.links li a {
+    color: black;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+    transition: 0.15s ease-in-out;
+    margin: 20px;
+}
+
+.links li a:hover {
+    color: rgb(124, 204, 204);
+    padding: 2px;
+}
+
+.toggle_btn {
+    font-size: 1.5rem;
+    margin-right: 10px;
+    display: none;
+}
+
+/*
+    ==============
+    Dropdown menu
+    =============
+*/
+.dropdown_menu {
+    position: absolute;
+    right: 2rem;
+    top: 50px;
+    width: 300px;
+    height: 0;
+    list-style: none;
+    background:  rgb(58, 201, 201);
+    backdrop-filter: blur(15px);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: height 0.3s ease-in-out;
+}
+.dropdown_menu.open {
+    height: 190px;
+}
+.dropdown_menu li {
+    padding: 0.7rem;
+    display: flex;
+    justify-content: center;
+}
+.dropdown_menu a {
+    text-decoration: none;
+    color: black;
+    text-transform: uppercase;
+}
+.dropdown_menu a:hover {
+    padding: 2px;
+    opacity: 0.6;
+    color: azure;
+}
+
+/*
+    ==================
+    Responsive design
+    ==================
+*/
+@media (max-width: 992px) {
+    .links {
+        display: none;
+    }
+
+    .toggle_btn {
+        display: block;
+        right: 2rem;
+        top: 60px;
+    }
+
+    .dropdown_menu {
+        display: block;
+    }
+}
+
+@media (max-width: 576px) {
+    .dropdown_menu {
+        left: 2rem;
+        width: unset;
+    }
+}
+
