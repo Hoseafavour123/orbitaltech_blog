@@ -1,26 +1,30 @@
 from flask import Flask
-from flask import render_template
+from flask_sqlalchemy import SQLAlchemy
+from flask_login import  LoginManager
 
-app = Flask(__name__)
+login_manager = LoginManager()
+login_manager.session_protection = "strong"
+login_manager.login_view = "login"
+login_manager.login_message_category = "info"
 
-@app.errorhandler(404)
-def error(e):
-    return render_template("404.html")
+db = SQLAlchemy()
 
-
-@app.errorhandler(500)
-def error500(e):
-    return render_template("500.html")
-
-@app.route("/")
-def index():
-    return render_template("index.html")
-
-# Register blueprint
-from auth import auth
-from main import main
-app.register_blueprint(auth)
-app.register_blueprint(main)
-
-if __name__ == "__main__":
-    app.run(debug=True)
+# Application factory
+def create_app():
+    app = Flask(__name__)
+    
+    app.config["SECRET_KEY"] = "secret"
+    app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:root@localhost/prime_db"
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
+    
+    login_manager.init_app(app)
+    db.init_app(app)
+    
+    # Register blueprints
+    from auth import auth
+    from views import views
+    
+    app.register_blueprint(auth)
+    app.register_blueprint(views)
+    
+    return app

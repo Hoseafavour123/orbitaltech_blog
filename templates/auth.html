@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous"> 
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+        <link rel="stylesheet", href="{{ url_for('static', filename='styles/auth.css')}}">
+    </head>
+
+    <body>
+        <form action="{{ request.path }}", method="POST", class="container">
+            {{ form.csrf_token }}
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+            <div class="text-center">
+                <h3 class="text-primary">{{ text }}</h3>
+            </div>
+            {% if request.path == "/signup" %}
+            <div class="form-group mb-3">
+                {{ form.first_name(class="form-control", placeholder="First name") }}
+            </div>
+            {% for error in form.first_name.errors %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                {{ error }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            {% endfor %}
+            </div>
+            <div class="form-group mb-3">
+                {{ form.last_name(class="form-control", placeholder="Last name") }}
+            </div>
+            {% for error in form.last_name.errors %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                {{ error }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+            {% endif %}
+
+            <div class="form-group mb-3">
+                {{ form.email(class="form-control", placeholder="Email address")}}
+            </div>
+            {% for error in form.email.errors %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                {{ error }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+
+            <div class="form-group mb-3">
+                {{ form.password(class="form-control", placeholder="Password")}}
+            </div>
+            {% for error in form.password.errors %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                {{ error }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+
+            {% if request.path == "/signup" %}
+            <div class="form-group mb-3">
+                {{ form.confirm_pwd(class="form-control", placeholder="Confirm password")}}
+            </div>
+            {% for error in form.confirm_pwd.errors %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                {{ error }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+            {% endif %}
+
+            <div class="text-center">
+                <div class="d-grid gap-2">
+                    <button type="sbumit" class="btn btn-block btn-primary mb-3">{{ btn_action }}</button>
+                </div>
+
+                <p>
+                    {% if request.path != "/signup" %}
+                    New here?
+                    <a href="{{ url_for("auth.signup") }}">Create account</a>
+                    {% else %}
+                    Already have an account?
+                    <a href="{{ url_for("auth.login") }}">Login</a>
+                    {% endif %}
+                </p>
+            </div>
+
+        </form>
+    </body>
+</html>
