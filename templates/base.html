@@ -13,9 +13,9 @@
             <div class="navbar">
                 <div class="logo"><h1>Prime</h1></div>
                 <ul class="links">
-                    <li><a href="{{ url_for('main.home')}}">Home</a></li>
-                    <li><a href="{{ url_for('main.posts')}}">Posts</a></li>
-                    <li><a href="{{ url_for('main.publish')}}">Publish</a></li>
+                    <li><a href="{{ url_for('views.home')}}">Home</a></li>
+                    <li><a href="{{ url_for('views.posts')}}">Posts</a></li>
+                    <li><a href="{{ url_for('views.publish')}}">Publish</a></li>
                     <li><a href="{{ url_for('auth.logout')}}">Log Out</a></li>
                 </ul>
                 <div class="toggle_btn">
@@ -23,9 +23,9 @@
                 </div>
             </div>
             <div class="dropdown_menu">
-                <li><a href="{{ url_for('main.home')}}">Home</a></li>
-                <li><a href="{{ url_for('main.posts')}}">Posts</a></li>
-                <li><a href="{{ url_for('main.publish')}}">Publish</a></li>
+                <li><a href="{{ url_for('views.home')}}">Home</a></li>
+                <li><a href="{{ url_for('views.posts')}}">Posts</a></li>
+                <li><a href="{{ url_for('views.publish')}}">Publish</a></li>
                 <li><a href="{{ url_for('auth.logout')}}">Log Out</a></li>
             </div>
         </header>
