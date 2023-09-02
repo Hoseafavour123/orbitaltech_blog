@@ -1,4 +1,4 @@
-"""Database Engine"""
+"""This module defines the routes for user authentication"""
 from flask import Blueprint, redirect, render_template, flash, url_for
 from models import User
 from forms import LoginForm, SignUpForm

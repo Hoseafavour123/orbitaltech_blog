@@ -1,0 +1,10 @@
+.post-container {
+    width: 60%;
+    margin-left: 200px;
+    margin-top: 20px;
+}
+ .post-container a {
+    width: auto;
+    padding: 5px;
+    margin-top: 10px;
+}

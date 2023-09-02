@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block links %}<link rel="stylesheet" href="{{ url_for('static', filename='styles/publish.css')}}"> {% endblock %}
+{% block title %} Publish {% endblock %}
+
+{% block  content %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-success post-success alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor%}
+    {% endif %}
+{% endwith %}
+
+<h3>Create Post</h3>
+<div class="container shadow p-3 mb-5 gb-body rounded">
+    <form action="{{ url_for('views.publish') }}" method="POST" class="form-class">
+        {{ form.csrf_token }}
+        {{ form.title.label(class="form-label") }}
+        {{ form.title(class="form-control")}}
+
+        {{ form.author.label(class="form-label") }}
+        {{ form.author(class="form-control")}}
+
+        {{ form.slug.label(class="form-label") }}
+        {{ form.slug(class="form-control") }}
+
+        {{ form.content.label(class="form-label") }}
+        {{ form.content(class="form-control", rows=5) }}
+
+        <button type="submit" class="btn btn-primary">Publish</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,5 +1,8 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, flash
 from flask_login import login_required
+from forms import PostForm
+from models import Post
+from app import db
 
 views = Blueprint("views", __name__, url_prefix="/")
 
@@ -21,12 +24,32 @@ def index():
 def home():
     return render_template("base.html")
 
+# View all posts
 @views.route("/posts", strict_slashes=False)
 @login_required
 def posts():
-    return render_template("posts.html")
+    posts = Post.query.order_by(Post.date_posted)
+    return render_template("posts.html", posts=posts)
 
-@views.route("/publish", strict_slashes=False)
+#View post by id
+@views.route("/posts/<int:id>")
+def post(id):
+    post = Post.query.get_or_404(id)
+    return render_template("post.html", post=post)
+
+#Publish content
+@views.route("/publish", methods=["GET", "POST"], strict_slashes=False)
 @login_required
 def publish():
-    return render_template("publish.html")
+    form = PostForm()
+    
+    if form.validate_on_submit():
+        post = Post(title=form.title.data, author=form.author.data, slug=form.slug.data, content=form.content.data)
+        db.session.add(post)
+        db.session.commit()
+        form.title.data = ''
+        form.author.data = ''
+        form.slug.data = ''
+        form.content.data = ''
+        flash("Created successfully!", "success")
+    return render_template("publish.html", form=form)

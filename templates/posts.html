@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block links %}<link rel="stylesheet" href="{{ url_for('static', filename='styles/posts.css')}}"> {% endblock %}
+{% block title %} Posts {% endblock %}
+
+{% block content %}
+<h2>Posts</h2>
+{% for post in posts %}
+    <div class="post-container shadow p-3 mb-5 bg-body rounded">
+        <div class="post">
+            <h3>{{ post.title }}</h3>
+            <small>Author: <em>{{ post.author }}</em></small><br>
+            <small>Date: <em>{{ post.date_posted }}</em></small><br>
+            {{ post.content }}
+        </div>
+        <a href="{{ url_for('views.post', id=post.id) }}" class="btn btn-outline-secondary view">View</a>
+    </div>
+{% endfor %}
+{% endblock %}

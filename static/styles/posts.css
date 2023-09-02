@@ -1,0 +1,14 @@
+.post-container {
+    width: 60%;
+    margin-left: 200px;
+}
+
+h2 {
+    text-align: center;
+}
+
+.view {
+    width: auto;
+    margin-top: 10px;
+    background: rgb(241, 252, 252);
+}
