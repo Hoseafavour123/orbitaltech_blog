@@ -14,9 +14,9 @@
     {% endif %}
 {% endwith %}
 
-<h3>Create Post</h3>
+<h3>Edit Post</h3>
 <div class="container shadow p-3 mb-5 gb-body rounded">
-    <form action="{{ url_for('views.publish') }}" method="POST" class="form-class">
+    <form action="{{ request.path }}" method="POST" class="form-class">
         {{ form.csrf_token }}
         {{ form.title.label(class="form-label") }}
         {{ form.title(class="form-control")}}
@@ -25,10 +25,11 @@
         {{ form.slug(class="form-control") }}
 
         {{ form.content.label(class="form-label") }}
-        {{ form.content(class="form-control", rows=5) }}       
+        {{ form.content(class="form-control", rows=5) }}
 
-        <button type="submit" class="btn btn-primary">Publish</button>
+        <button type="submit" class="btn btn-primary">Save</button>
     </form>
+
     {{ ckeditor.load() }}
     {{ ckeditor.config(name="content") }}
 

@@ -7,8 +7,34 @@ h2 {
     text-align: center;
 }
 
+h6 {
+    text-align: center;
+}
+
 .view {
     width: auto;
     margin-top: 10px;
     background: rgb(241, 252, 252);
+}
+
+.post-success {
+    background: rgb(175, 246, 246);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    margin-left: 340px;
+    margin-top: 20px;
+}
+
+.content {
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+
+@media (max-width: 576px) {
+    .post-container {
+        margin: auto;
+    }
 }

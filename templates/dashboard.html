@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block links %}<link rel="stylesheet" href="{{ url_for('static', filename='styles/dashboard.css')}}"> {% endblock %}
+{% block title %} Dashboard {% endblock %}
+
+{% block content %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{category}} post-success alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor%}
+    {% endif %}
+{% endwith %}
+
+<div class="user-profile">
+    <h3>User Profile Information</h3>
+
+    <div class="user-info">
+        <div>
+            <p>Name: <em>{{  current_user.first_name }} {{ current_user.last_name}}</em> </p>
+            <p>Email: <em>{{ current_user.email }}</em> </p>
+            <p>Date joined: <em>{{ current_user.date_joined.strftime("%B %d, %Y") }} </em></p>
+            <p>About: <em>{{ current_user.about_author }}</em> </p>
+        </div>
+        <img src="./static/images/woman.jpg">
+    </div>
+
+    <div>
+        <h5><i class="fa fa-trophy"></i> Total posts<br>{{ current_user.number_of_posts() }}</h5>
+    </div>
+
+    <div class="update-form shadow p-3 mb-5 gb-body rounded">
+        <form method="POST" action="{{ url_for('views.update_user', id=current_user.id )}}" class="form-class">
+            <h5>Update Profile Information</h5>
+            {{ form.csrf_token }}
+            {{ form.first_name.label(class="form-label") }}
+            {{ form.first_name(class="form-control")}}
+
+            {{ form.last_name.label(class="form-label") }}
+            {{ form.last_name(class="form-control") }}
+
+            {{ form.email.label(class="form-label") }}
+            {{ form.email(class="form-control") }}
+        
+            {{ form.about.label(class="form-label") }}
+            {{ form.about(class="form-control")}}
+
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+    </div>
+    <a href="{{ url_for("views.delete_user", id=current_user.id )}}" class="btn btn-outline-danger view">Delete Account</a>
+</div>
+{% endblock %}

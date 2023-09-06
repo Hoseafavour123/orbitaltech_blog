@@ -14,9 +14,13 @@
         <header>
             <div class="navbar">
                 <div class="logo"><h1>Prime</h1></div>
+                <form class="search_form" action="{{ url_for('views.search') }}" method="POST">
+                    <input type="text" name="searched" placeholder="Search blogs...">
+                    <button type="submit" class="search_btn">Search</button>
+                </form>
                 <ul class="links">
                     <li><a href="{{ url_for('views.home')}}">Home</a></li>
-                    <li><a href="{{ url_for('views.posts')}}">Posts</a></li>
+                    <li><a href="{{ url_for("views.dashboard")}}">Dashboard</a></li>
                     <li><a href="{{ url_for('views.publish')}}">Publish</a></li>
                     <li><a href="{{ url_for('auth.logout')}}">Log Out</a></li>
                 </ul>
@@ -26,8 +30,8 @@
             </div>
             <div class="dropdown_menu">
                 <li><a href="{{ url_for('views.home')}}">Home</a></li>
-                <li><a href="{{ url_for('views.posts')}}">Posts</a></li>
                 <li><a href="{{ url_for('views.publish')}}">Publish</a></li>
+                <li><a href="">Dashboard<a/></li>
                 <li><a href="{{ url_for('auth.logout')}}">Log Out</a></li>
             </div>
         </header>

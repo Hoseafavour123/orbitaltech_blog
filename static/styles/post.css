@@ -5,6 +5,18 @@
 }
  .post-container a {
     width: auto;
-    padding: 5px;
     margin-top: 10px;
+}
+
+.content {
+    margin-bottom: 20px;
+    padding: 10px;
+}
+.post-success {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    margin-left: 200px;
+    margin-top: 20px;
 }

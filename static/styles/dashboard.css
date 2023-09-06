@@ -1,0 +1,56 @@
+h3, h5 {
+    text-align: center;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+h5 {
+    margin-bottom: 40px;
+}
+
+img {
+    width: 250px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.user-profile {
+    padding: 20px;
+    border: 1px solid bisque;
+}
+.user-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 40px;
+}
+
+.update-form {
+    width: 50%;
+    margin-left: 300px;
+
+}
+
+.update-form button {
+    margin-top: 15px;
+}
+
+i {
+    margin-right: 10px;
+}
+
+.post-success {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    margin-left: 200px;
+    margin-top: 20px;
+}
+
+@media (max-width: 576px) {
+    .update-form {
+        margin: auto;
+        width: 70%;
+    }
+}

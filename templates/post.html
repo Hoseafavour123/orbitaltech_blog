@@ -3,13 +3,27 @@
 {% block title %} Post {% endblock %}
 
 {% block content %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{category}} post-success alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor%}
+    {% endif %}
+{% endwith %}
+
 <div class="shadow p-3 mb-5 bg-body rounded post-container">
     <h2>{{ post.title }}</h2>
-    <small><em>{{ post.author }}</em></small><br>
-    <small><em>{{ post.date_posted }}</em></small><br>
-    {{ post.content }}<br>
-
-    <a href="{{ url_for('views.posts')}}" class="btn btn-outline-secondary back-blog">Back to blogs</a>
+    <small><em>Author: {{ post.author.first_name }} {{ post.author.last_name }} </em></small><br>
+    <small><em>Date: {{ post.date_posted.strftime("%B %d, %Y") }}</em></small><br><br>
+    <div class="content">
+        {{ post.content|safe }}
+    </div>
+    <a href="{{ url_for('views.edit', id=post.id) }}" class="btn btn-outline-secondary view">Edit</a>
+    <a href="{{ url_for('views.delete', id=post.id) }}" class="btn btn-outline-danger view">Delete</a>
 </div>
+<a href="{{ url_for('views.home')}}" class="btn btn-outline-secondary back-blog">Back to blogs</a>
 
 {% endblock %}

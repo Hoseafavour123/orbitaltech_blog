@@ -70,6 +70,35 @@ body {
 
 /*
     ==============
+    Search field
+    =============
+*/
+
+.search_form {
+    display:  flex;
+    flex-shrink: 40px;
+    width: 100px;
+    height: 35px;
+}
+
+.search_btn {
+    padding: 5px;
+    border: 1px grey solid;
+    background-color: black;
+    color: white;
+}
+
+input {
+    border-color: white;
+    outline: none;
+}
+
+input::placeholder {
+    padding: 4px;
+}
+
+/*
+    ==============
     Dropdown menu
     =============
 */
@@ -129,7 +158,14 @@ body {
 @media (max-width: 576px) {
     .dropdown_menu {
         left: 2rem;
-        width: unset;
+        width: auto;
+    }
+
+    .search_form {
+        position: absolute;
+        top: 20px;
+        right: 40%;
+        margin-right: 30px;
     }
 }
 

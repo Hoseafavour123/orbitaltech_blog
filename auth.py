@@ -26,7 +26,7 @@ def login():
             else:
                 flash("Invalid password!", "danger")
         except Exception as e:
-            flash("Email not registered!", "danger")
+            flash("Account not registered!", "danger")
             
     return render_template("auth.html", form=form, text="Login", btn_action="Login")
 

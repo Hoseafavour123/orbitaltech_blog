@@ -13,10 +13,6 @@ h3 {
     margin-top: 15px;
 }
 
-button {
-    background: rgb(129, 228, 228);
-}
-
 .post-success {
     background: rgb(175, 246, 246);
     display: flex;
@@ -25,4 +21,10 @@ button {
     width: 50%;
     margin-left: 340px;
     margin-top: 20px;
+}
+
+@media (max-width: 576px) {
+    .container {
+        margin: auto;
+    }
 }

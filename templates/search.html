@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block links %}<link rel="stylesheet" href="{{ url_for('static', filename='styles/search.css')}}"> {% endblock %}
+{% block title %} Results {% endblock %}
+
+{% block content  %}
+<h2>Searching for "{{ searched }}" </h2>
+{% if posts %}
+    {% for post in posts %}
+        <a href="{{ url_for("views.post", id=post.id )}}">{{ post.title }}</a><br>
+    {% endfor %}
+{% else %}
+    <p> No search results...sorry </p>
+{% endif %}
+{% endblock %}

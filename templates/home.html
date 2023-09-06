@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block links %}<link rel="stylesheet" href="{{ url_for('static', filename='styles/posts.css')}}"> {% endblock %}
+{% block title %} Home {% endblock %}
+
+{% block content %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-success post-success alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor%}
+    {% endif %}
+{% endwith %}
+
+
+<h2>Posts</h2>
+<em><h6>{{ current_user.number_of_posts() }} posts</h6></em>
+{% if posts %}
+    {% for post in posts %}
+        {% if post.user_id == current_user.id  %}
+            <div class="post-container shadow p-3 mb-5 bg-body rounded">
+                <div class="post">
+                    <h3>{{ post.title }}</h3>
+                    <small><em>Author: {{ post.author.first_name }} {{ post.author.last_name}} </em></small><br>
+                    <small><em>Date: {{ post.date_posted.strftime("%B %d, %Y") }}</em></small><br><br>
+                    <div class="content">
+                        {{ post.content|safe }}
+                    </div>
+                </div>
+                <a href="{{ url_for('views.post', id=post.id) }}" class="btn btn-outline-secondary view">View</a>
+                <a href="{{ url_for('views.edit', id=post.id) }}" class="btn btn-outline-secondary view">Edit</a>
+                <a href="{{ url_for('views.delete', id=post.id) }}" class="btn btn-outline-danger view">Delete</a>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% else %}
+    <h3>No posts yet</h3>
+{% endif %}
+{% endblock %}
