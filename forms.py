@@ -2,7 +2,6 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField
 from wtforms import StringField, PasswordField, EmailField
-import email_validator
 from wtforms.validators import InputRequired, Length, Email, EqualTo
 from wtforms.widgets import TextArea
 from flask_ckeditor import CKEditorField
