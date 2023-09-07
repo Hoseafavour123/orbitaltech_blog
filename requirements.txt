@@ -7,7 +7,7 @@ colorama==0.4.6
 cryptography==41.0.3
 dnspython==2.3.0
 email-validator==2.0.0.post2
-Flask==2.3.3
+Flask==2.2.5
 Flask-Bcrypt==1.0.1
 Flask-CKEditor==0.4.6
 Flask-Login==0.6.2
