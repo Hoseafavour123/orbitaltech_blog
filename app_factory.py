@@ -2,6 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import  LoginManager
 from flask_ckeditor import CKEditor
+import os
 
 login_manager = LoginManager()
 login_manager.session_protection = "strong"
@@ -17,7 +18,7 @@ def create_app():
     app = Flask(__name__)
     
     app.config["SECRET_KEY"] = "secret"
-    app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:root@localhost/prime_db"
+    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URI")
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
     
     app.config["UPLOAD_FOLDER"] = "orbitaltech_blog/static/images/"
