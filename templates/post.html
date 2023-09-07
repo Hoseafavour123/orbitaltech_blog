@@ -16,14 +16,42 @@
 
 <div class="shadow p-3 mb-5 bg-body rounded post-container">
     <h2>{{ post.title }}</h2>
-    <small><em>Author: {{ post.author.first_name }} {{ post.author.last_name }} </em></small><br>
-    <small><em>Date: {{ post.date_posted.strftime("%B %d, %Y") }}</em></small><br><br>
+    <div class="header-info">
+        {% if post.author.profile_pic %}
+            <img src="{{ url_for('static', filename='images/' + post.author.profile_pic )}}">
+            {% else %}
+            <img src="{{ url_for('static', filename='images/default_pic.png')}}">
+        {% endif %}
+        <div class="header-info-post">
+            <small style="font-weight: bold; "><em>{{ post.author.first_name }} {{ post.author.last_name }} </em></small>
+            <small style="font-size: 12px; "><em>{{ post.date_posted.strftime("%B %d, %Y") }}</em></small>
+        </div>
+    </div>
+    
     <div class="content">
         {{ post.content|safe }}
     </div>
-    <a href="{{ url_for('views.edit', id=post.id) }}" class="btn btn-outline-secondary view">Edit</a>
-    <a href="{{ url_for('views.delete', id=post.id) }}" class="btn btn-outline-danger view">Delete</a>
+
+    <div class="post-about">
+        {% if post.author.profile_pic %}
+        <img src="{{ url_for('static', filename='images/' + post.author.profile_pic )}}">
+        {% else %}
+        <img src="{{ url_for('static', filename='images/default_pic.png')}}">
+        {% endif %}
+        <div class="about-post-author">
+            <h6>{{ post.author.first_name }} {{ post.author.last_name }}</h6>
+            {% if post.author.about_author %}
+                <p>{{ post.author.about_author }}</p>
+            {% else %}
+                <p><small><em>no info</em></small></p>
+            {% endif %}
+        </div>
+    </div>
 </div>
 <a href="{{ url_for('views.home')}}" class="btn btn-outline-secondary back-blog">Back to blogs</a>
+{% if post.user_id == current_user.id %}
+    <a href="{{ url_for('views.edit', id=post.id) }}" class="btn btn-outline-secondary view">Edit</a>
+    <a href="{{ url_for('views.delete', id=post.id) }}" class="btn btn-outline-danger view">Delete</a>
+{% endif %}
 
 {% endblock %}

@@ -146,3 +146,18 @@ footer {
     flex: 1;
     margin-top: 10px;
 }
+
+@media (max-width: 998px) {
+    .header .container {
+        display: block;
+        margin: auto;
+    }
+
+    .boxes .container{
+        display: block;
+    }
+
+    .foot-card {
+        margin: 10px;
+    }
+}

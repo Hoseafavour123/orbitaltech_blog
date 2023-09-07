@@ -1,6 +1,7 @@
 """Forms"""
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, EmailField, FileField
+from flask_wtf.file import FileField
+from wtforms import StringField, PasswordField, EmailField
 import email_validator
 from wtforms.validators import InputRequired, Length, Email, EqualTo
 from wtforms.widgets import TextArea
@@ -30,5 +31,5 @@ class UserForm(FlaskForm):
     first_name = StringField(validators=[InputRequired(), Length(min=2, max=50)])
     last_name = StringField(validators=[InputRequired(), Length(min=2, max=50, message="Name too short")])
     email = EmailField(validators=[InputRequired(), Email(message="Enter a valid email")])
-    about = StringField(validators=[InputRequired()], widget=TextArea())
+    about = StringField(widget=TextArea())
     profile_pic = FileField("Profile Picture")

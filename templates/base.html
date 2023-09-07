@@ -31,7 +31,7 @@
             <div class="dropdown_menu">
                 <li><a href="{{ url_for('views.home')}}">Home</a></li>
                 <li><a href="{{ url_for('views.publish')}}">Publish</a></li>
-                <li><a href="">Dashboard<a/></li>
+                <li><a href="{{ url_for("views.dashboard")}}">Dashboard</a></li>
                 <li><a href="{{ url_for('auth.logout')}}">Log Out</a></li>
             </div>
         </header>

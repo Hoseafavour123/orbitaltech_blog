@@ -50,16 +50,19 @@ body {
 
 .links li a {
     color: black;
+    background-color: white;
     text-decoration: none;
+    padding: 5px;
     text-transform: uppercase;
     text-align: center;
     transition: 0.15s ease-in-out;
     margin: 20px;
+    border-radius: 10px;
 }
 
 .links li a:hover {
     color: rgb(124, 204, 204);
-    padding: 2px;
+    padding: 3px;
 }
 
 .toggle_btn {

@@ -1,3 +1,15 @@
+.create-btn {
+    display: flex;
+    justify-content: center;
+    color: black;
+}
+
+.create-btn a {
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+}
+
 .post-container {
     width: 60%;
     margin-left: 200px;
@@ -22,19 +34,50 @@ h6 {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 50%;
-    margin-left: 340px;
+    width: 60%;
+    margin-left: 200px;
     margin-top: 20px;
 }
 
 .content {
+    margin-top: 10px;
     margin-bottom: 20px;
     padding: 10px;
 }
 
+/* Post header img and date */
+.header-info {
+    display: flex;
+}
 
-@media (max-width: 576px) {
+.header-info img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+
+.header-info-post {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+
+@media (max-width: 998px) {
     .post-container {
         margin: auto;
+        width: 90%;
+    }
+
+    .post-success {
+        background: rgb(175, 246, 246);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 90%;
+        margin: auto;
+        margin-top: 10px;
     }
 }

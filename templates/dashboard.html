@@ -24,7 +24,11 @@
             <p>Date joined: <em>{{ current_user.date_joined.strftime("%B %d, %Y") }} </em></p>
             <p>About: <em>{{ current_user.about_author }}</em> </p>
         </div>
-        <img src="./static/images/woman.jpg">
+        {% if current_user.profile_pic %}
+            <img src="{{ url_for('static', filename='images/' + current_user.profile_pic)}}">
+        {% else %}
+            <img src="./static/images/default_pic.png">
+        {% endif %}
     </div>
 
     <div>
@@ -32,7 +36,7 @@
     </div>
 
     <div class="update-form shadow p-3 mb-5 gb-body rounded">
-        <form method="POST" action="{{ url_for('views.update_user', id=current_user.id )}}" class="form-class">
+        <form method="POST" action="{{ url_for('views.update_user', id=current_user.id )}}" class="form-class" enctype="multipart/form-data">
             <h5>Update Profile Information</h5>
             {{ form.csrf_token }}
             {{ form.first_name.label(class="form-label") }}
@@ -46,6 +50,9 @@
         
             {{ form.about.label(class="form-label") }}
             {{ form.about(class="form-control")}}
+
+            {{ form.profile_pic.label(class="form-label") }}
+            {{ form.profile_pic(class="form-control", value=current_user.profile_pic)}}
 
             <button type="submit" class="btn btn-primary">Update</button>
         </form>

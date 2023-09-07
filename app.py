@@ -20,6 +20,8 @@ def create_app():
     app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:root@localhost/prime_db"
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
     
+    app.config["UPLOAD_FOLDER"] = "orbitaltech_blog/static/images/"
+    
     login_manager.init_app(app)
     ckeditor.init_app(app)
     db.init_app(app)

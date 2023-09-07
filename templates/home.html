@@ -17,14 +17,29 @@
 
 <h2>Posts</h2>
 <em><h6>{{ current_user.number_of_posts() }} posts</h6></em>
+{% if current_user.number_of_posts() == 0 %}
+<div class="create-btn">
+    <button class="btn btn-primary"><a href="{{ url_for("views.publish") }}">Create</a></button>
+</div>
+{% endif %}
 {% if posts %}
     {% for post in posts %}
         {% if post.user_id == current_user.id  %}
             <div class="post-container shadow p-3 mb-5 bg-body rounded">
                 <div class="post">
                     <h3>{{ post.title }}</h3>
-                    <small><em>Author: {{ post.author.first_name }} {{ post.author.last_name}} </em></small><br>
-                    <small><em>Date: {{ post.date_posted.strftime("%B %d, %Y") }}</em></small><br><br>
+                    <div class="header-info">
+                        {% if post.author.profile_pic %}
+                            <img src="{{ url_for('static', filename='images/' + post.author.profile_pic )}}">
+                            {% else %}
+                            <img src="{{ url_for('static', filename='images/default_pic.png')}}">
+                        {% endif %}
+                        <div class="header-info-post">
+                            <small style="font-weight: bold; "><em>{{ post.author.first_name }} {{ post.author.last_name }} </em></small>
+                            <small style="font-size: 12px; "><em>{{ post.date_posted.strftime("%B %d, %Y") }}</em></small>
+                        </div>
+                    </div>
+                
                     <div class="content">
                         {{ post.content|safe }}
                     </div>

@@ -9,10 +9,13 @@
 }
 
 .content {
+    margin-top: 20px;
     margin-bottom: 20px;
     padding: 10px;
 }
+
 .post-success {
+    background: rgb(175, 246, 246);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,3 +23,76 @@
     margin-left: 200px;
     margin-top: 20px;
 }
+
+.post-about img {
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+    border-radius: 50%;
+}
+
+/*
+    ==============
+    About section
+    ==============
+*/
+.post-about {
+    border-top: 1px solid rgb(222, 213, 213);
+    display: flex;
+    align-items: start;
+    padding: 10px;
+}
+
+.post-about h6 {
+    font-weight: bold;
+}
+.post-about p {
+    font-size: 15px;
+}
+
+/*
+    ========================
+    post header img and date
+    =======================
+*/
+.header-info {
+    display: flex;
+}
+
+.header-info img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+
+.header-info-post {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 998px) {
+
+    .update-form {
+        width: 70%;
+        margin: auto;
+    }
+
+    .post-container {
+        width: 90%;
+        margin: auto;
+        margin-top: 10px;
+    }
+
+    .post-success {
+        background: rgb(175, 246, 246);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 90%;
+        margin-left: 20px;
+        margin-top: 20px;
+    }
+
+}
+

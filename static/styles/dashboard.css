@@ -9,9 +9,10 @@ h5 {
 }
 
 img {
-    width: 250px;
-    height: 200px;
+    width: 200px;
+    height: 180px;
     border-radius: 50%;
+
 }
 
 .user-profile {
@@ -40,17 +41,38 @@ i {
 }
 
 .post-success {
+    background: rgb(175, 246, 246);
     display: flex;
     justify-content: center;
     align-items: center;
     width: 60%;
-    margin-left: 200px;
+    margin-left: 310px;
     margin-top: 20px;
 }
 
-@media (max-width: 576px) {
+@media (max-width: 998px) {
+
     .update-form {
+        width: 90%;
         margin: auto;
-        width: 70%;
+    }
+
+
+    .post-success {
+        background: rgb(175, 246, 246);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 90%;
+        margin-left: 20px;
+        margin-top: 20px;
+    }
+
+    img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin-left: 20px;
+    
     }
 }

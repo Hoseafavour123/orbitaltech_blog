@@ -4,9 +4,24 @@
 
 {% block content  %}
 <h2>Searching for "{{ searched }}" </h2>
-{% if posts %}
+{% if searched == "" %}
+    <p> No search results...sorry </p>
+{% elif posts %}
     {% for post in posts %}
-        <a href="{{ url_for("views.post", id=post.id )}}">{{ post.title }}</a><br>
+    <div class="search-container shadow p-3 mb-5 bg-body rounded">
+        <h4><a href="{{ url_for("views.post", id=post.id )}}">{{ post.title }}</a></h4>
+        <div class="header-info">
+            {% if post.author.profile_pic %}
+                <img src="{{ url_for('static', filename='images/' + post.author.profile_pic )}}">
+                {% else %}
+                <img src="{{ url_for('static', filename='images/default_pic.png')}}">
+            {% endif %}
+            <div class="header-info-post">
+                <small style="font-weight: bold; "><em>{{ post.author.first_name }} {{ post.author.last_name }} </em></small>
+                <small style="font-size: 12px; "><em>{{ post.date_posted.strftime("%B %d, %Y") }}</em></small>
+            </div>
+        </div>
+    </div>
     {% endfor %}
 {% else %}
     <p> No search results...sorry </p>

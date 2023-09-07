@@ -18,6 +18,7 @@ class User(UserMixin, db.Model):
     def __repr__(self):
         return f"[{self.first_name} {self.last_name} - {self.email}]"
     
+    # Get total number of posts for this user
     def number_of_posts(self):
         posts = 0
         for post in Post.query.all():
@@ -30,7 +31,7 @@ class User(UserMixin, db.Model):
 class Post(db.Model):
     __tablename__ = "posts"
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.ForeignKey("users.id"))
+    user_id = db.Column(db.ForeignKey("users.id"), nullable=False)
     title = db.Column(db.String(50), nullable=False)
     date_posted = db.Column(db.DateTime, default=datetime.utcnow)
     slug = db.Column(db.String(50), nullable=False)

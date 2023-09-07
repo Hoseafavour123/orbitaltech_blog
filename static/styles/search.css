@@ -1,0 +1,38 @@
+.search-container {
+    width: 60%;
+    margin-left: 200px;
+    margin-top: 20px;
+}
+
+h4 a {
+    text-decoration: none;
+}
+
+.content {
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.header-info {
+    display: flex;
+}
+
+.header-info img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+
+.header-info-post {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 998px) {
+
+    .search-container {
+        width: 90%;
+        margin: auto;
+    }
+}

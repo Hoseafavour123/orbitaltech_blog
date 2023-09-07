@@ -2,7 +2,10 @@ from flask import Blueprint, render_template, flash, redirect, url_for, request
 from flask_login import login_required, current_user
 from forms import PostForm, UserForm
 from models import Post, User
+from werkzeug.utils import secure_filename
+from uuid import uuid1
 from app import db
+import os
 
 views = Blueprint("views", __name__, url_prefix="/")
 
@@ -45,6 +48,7 @@ def publish():
         form.slug.data = ''
         form.content.data = ''
         flash("Created successfully!", "success")
+        return render_template("post.html", post=post)
     return render_template("publish.html", form=form)
 
 
@@ -62,6 +66,7 @@ def edit(id):
         
             db.session.add(post)
             db.session.commit()
+            flash("Sucessfully edited!", "success")
             return redirect(url_for("views.post", id=post.id))
     
         form.title.data = post.title
@@ -128,10 +133,31 @@ def update_user(id):
         user.email = form.email.data
         user.about_author =  form.about.data
         
-        db.session.add(user)
-        db.session.commit()
-        flash("Updated Successfully!", "success")
-        return redirect(url_for("views.dashboard"))
+        
+        if request.files["profile_pic"]:
+            user.profile_pic = request.files["profile_pic"]
+            #Get image name and convert to uuid string
+            pic_name = secure_filename(user.profile_pic.filename)
+            pic_name_uuid = str(uuid1()) + "_" + pic_name
+        
+            saver = request.files["profile_pic"]
+        
+            #Save to database
+            user.profile_pic = pic_name_uuid
+    
+            try:
+                db.session.commit()
+                from manage import app
+                saver.save(os.path.join(app.config["UPLOAD_FOLDER"], pic_name_uuid))
+                flash("Updated Successfully!", "success")
+                return redirect(url_for("views.dashboard"))
+            except Exception as e:
+                flash(f"{e} Upload failed, an error occured", "danger")
+                return redirect(url_for("views.dashboard"))
+        else:
+            db.session.commit()
+            flash("Updated Successfully!", "success")
+            return redirect(url_for("views.dashboard"))
         
 
 # Delete users
@@ -140,6 +166,20 @@ def update_user(id):
 def delete_user(id):
     try:
         user = User.query.get_or_404(id)
+        # Clear posts
+        posts = Post.query.all()
+        for post in posts:
+            if post.user_id == user.id:
+                db.session.delete(post)
+        # Delete profile image
+        if user.profile_pic:
+            from manage import app
+            pic_path = os.path.join(app.config["UPLOAD_FOLDER"], user.profile_pic)
+            try:
+                os.remove(pic_path)
+            except Exception as e:
+                flash("Error!", "danger")
+                return redirect(url_for("views.dashboard"))
         db.session.delete(user)
         db.session.commit()
         
@@ -147,4 +187,4 @@ def delete_user(id):
         return redirect(url_for("auth.signup"))
     except Exception as e:
         flash(e, "danger")
-        return  render_template("dashboard.html")
+        return  redirect(url_for("views.dashboard"))
