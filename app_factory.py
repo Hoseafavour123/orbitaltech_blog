@@ -21,7 +21,7 @@ def create_app():
     app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URI")
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
     
-    app.config["UPLOAD_FOLDER"] = "orbitaltech_blog/static/images/"
+    app.config["UPLOAD_FOLDER"] = "static/images/"
     
     login_manager.init_app(app)
     ckeditor.init_app(app)
