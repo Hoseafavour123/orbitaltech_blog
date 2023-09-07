@@ -4,7 +4,7 @@ from forms import PostForm, UserForm
 from models import Post, User
 from werkzeug.utils import secure_filename
 from uuid import uuid1
-from app import db
+from app_factory import db
 import os
 
 views = Blueprint("views", __name__, url_prefix="/")
@@ -147,7 +147,7 @@ def update_user(id):
     
             try:
                 db.session.commit()
-                from manage import app
+                from app import app
                 saver.save(os.path.join(app.config["UPLOAD_FOLDER"], pic_name_uuid))
                 flash("Updated Successfully!", "success")
                 return redirect(url_for("views.dashboard"))
@@ -173,7 +173,7 @@ def delete_user(id):
                 db.session.delete(post)
         # Delete profile image
         if user.profile_pic:
-            from manage import app
+            from app import app
             pic_path = os.path.join(app.config["UPLOAD_FOLDER"], user.profile_pic)
             try:
                 os.remove(pic_path)

@@ -1,36 +1,15 @@
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_login import  LoginManager
-from flask_ckeditor import CKEditor
+from flask import render_template
+from flask_login import login_required
+from flask_migrate import Migrate
+from app_factory import create_app, db
+from models import User, Post
 
-login_manager = LoginManager()
-login_manager.session_protection = "strong"
-login_manager.login_view = "auth.login"
-login_manager.login_message_category = "info"
+app = create_app()
+app.app_context().push()
+db.create_all()
 
-db = SQLAlchemy()
+# Database migration
+migrate = Migrate(app, db)
 
-ckeditor = CKEditor()
-
-# Application factory
-def create_app():
-    app = Flask(__name__)
-    
-    app.config["SECRET_KEY"] = "secret"
-    app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:root@localhost/prime_db"
-    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
-    
-    app.config["UPLOAD_FOLDER"] = "orbitaltech_blog/static/images/"
-    
-    login_manager.init_app(app)
-    ckeditor.init_app(app)
-    db.init_app(app)
-    
-    # Register blueprints
-    from auth import auth
-    from views import views
-    
-    app.register_blueprint(auth)
-    app.register_blueprint(views)
-    
-    return app
+if __name__ == "__main__":
+    app.run(debug=True)

@@ -1,7 +1,7 @@
 """Models"""
 from flask_login import UserMixin
 from datetime import datetime
-from app import db
+from app_factory import db
 
 # User Class
 class User(UserMixin, db.Model):
