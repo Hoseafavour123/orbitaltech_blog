@@ -52,4 +52,5 @@ def signup():
 @login_required
 def logout():
     logout_user()
+    db.session.close()
     return redirect(url_for("views.index"))

@@ -17,7 +17,7 @@
 <h3>Edit Post</h3>
 <div class="container shadow p-3 mb-5 gb-body rounded">
     <form action="{{ request.path }}" method="POST" class="form-class">
-        {{ form.csrf_token }}
+        {{ form.hidden_tag() }}
         {{ form.title.label(class="form-label") }}
         {{ form.title(class="form-control")}}
 

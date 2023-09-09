@@ -5,11 +5,11 @@ from app_factory import create_app, db
 from models import User, Post
 
 app = create_app()
-app.app_context().push()
-db.create_all()
 
-# Database migration
-migrate = Migrate(app, db)
+with app.app_context():
+    db.create_all()
+    # Database migration
+    migrate = Migrate(app, db)
 
-if __name__ == "__main__":
-    app.run()
+    if __name__ == "__main__":
+        app.run()

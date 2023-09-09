@@ -38,7 +38,7 @@
     <div class="update-form shadow p-3 mb-5 gb-body rounded">
         <form method="POST" action="{{ url_for('views.update_user', id=current_user.id )}}" class="form-class" enctype="multipart/form-data">
             <h5>Update Profile Information</h5>
-            {{ form.csrf_token }}
+            {{ form.hidden_tag() }}
             {{ form.first_name.label(class="form-label") }}
             {{ form.first_name(class="form-control")}}
 
