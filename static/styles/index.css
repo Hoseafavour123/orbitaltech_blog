@@ -169,6 +169,9 @@ footer {
     .card i {
         margin-right: 15px;
     }
+    .card p {
+        font-size: 15px;
+    }
     
 
     .foot-card {
