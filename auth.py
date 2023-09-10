@@ -6,10 +6,6 @@ from app_factory import login_manager, db
 from flask_login import login_user, logout_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
 
-"""Keep current user loaded in session"""
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))
 
 """Define Blueprint"""
 auth = Blueprint("auth", __name__, url_prefix="/")
