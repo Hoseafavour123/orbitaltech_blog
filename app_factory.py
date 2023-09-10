@@ -22,7 +22,7 @@ def create_app():
     app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://mtxhfipnrdhayb:3050c1a2c47bb7cb33f36d031b12e74a69d200281de4c6eddebe78d951e54cf8@ec2-35-169-9-79.compute-1.amazonaws.com:5432/d3p9qp8g4p4otu"
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
     
-    app.config["UPLOAD_FOLDER"] = "orbitaltech_blog/static/images/"
+    app.config["UPLOAD_FOLDER"] = "static/images/"
     
     login_manager.init_app(app)
     ckeditor.init_app(app)
