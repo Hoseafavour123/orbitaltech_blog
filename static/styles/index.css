@@ -157,6 +157,20 @@ footer {
         display: block;
     }
 
+    .card {
+        border-radius: 10px;
+        margin: 20px 10px;
+        padding: 10px 15px;
+        background-color: rgb(175, 246, 246);
+        min-height: 100px;
+        box-shadow: 0 3px 5px rgb(0, 0, 0, 0.6);
+    }
+
+    .card i {
+        margin-right: 15px;
+    }
+    
+
     .foot-card {
         margin: 10px;
     }
