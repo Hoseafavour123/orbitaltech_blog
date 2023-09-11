@@ -19,8 +19,8 @@ def create_app():
     
     app.config["SECRET_KEY"] = "secret"
     #app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:root@localhost/prime_db"
-    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URI")
-    #app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://mtxhfipnrdhayb:3050c1a2c47bb7cb33f36d031b12e74a69d200281de4c6eddebe78d951e54cf8@ec2-35-169-9-79.compute-1.amazonaws.com:5432/d3p9qp8g4p4otu"
+    #app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URI")
+    app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://mtxhfipnrdhayb:3050c1a2c47bb7cb33f36d031b12e74a69d200281de4c6eddebe78d951e54cf8@ec2-35-169-9-79.compute-1.amazonaws.com:5432/d3p9qp8g4p4otu"
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
     
     app.config["UPLOAD_FOLDER"] = "static/images/"
