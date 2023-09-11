@@ -112,6 +112,7 @@ def search():
 
 # Dashboard
 @views.route("/dashboard", methods=["GET", "POST"], strict_slashes=False)
+@login_required
 def dashboard():
     form = UserForm()
     
@@ -124,6 +125,7 @@ def dashboard():
 
 # Update User
 @views.route("/users/update/<int:id>", methods=["POST"], strict_slashes=False)
+@login_required
 def update_user(id):
     form = UserForm()
     user = User.query.get_or_404(id)
