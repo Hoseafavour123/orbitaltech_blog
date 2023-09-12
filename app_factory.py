@@ -4,11 +4,6 @@ from flask_login import  LoginManager
 from flask_ckeditor import CKEditor
 import os
 
-login_manager = LoginManager()
-login_manager.session_protection = "strong"
-login_manager.login_view = "auth.login"
-login_manager.login_message_category = "info"
-
 db = SQLAlchemy()
 ckeditor = CKEditor()
 
@@ -26,7 +21,14 @@ def create_app():
     #app.config["UPLOAD_FOLDER"] = "orbitaltech_blog/static/images"
     
     db.init_app(app)
+    
+    login_manager = LoginManager()
+    login_manager.session_protection = "strong"
+    login_manager.login_view = "auth.login"
+    login_manager.login_message_category = "info"
+    
     login_manager.init_app(app)
+    
     """Keep current user loaded in session"""
     from models import User
     @login_manager.user_loader
