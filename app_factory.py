@@ -2,6 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import  LoginManager
 from flask_ckeditor import CKEditor
+from flask_migrate import Migrate
 import os
 
 db = SQLAlchemy()
@@ -32,7 +33,7 @@ def create_app():
     ckeditor.init_app(app)
     
     """Keep current user loaded in session"""
-    from models import User
+    from models import User, Post
     @login_manager.user_loader
     def load_user(user_id):
         return User.query.get(int(user_id))
