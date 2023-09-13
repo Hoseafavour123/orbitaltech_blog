@@ -11,5 +11,5 @@ with app.app_context():
     # Database migration
     migrate = Migrate(app, db)
 
-    if __name__ == "__main__":
-        app.run()
+if __name__ == "__main__":
+    app.run()
