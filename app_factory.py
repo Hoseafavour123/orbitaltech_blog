@@ -27,13 +27,12 @@ def create_app():
     login_manager.login_view = "auth.login"
     login_manager.login_message_category = "info"
     
-    login_manager.init_app(app)
-    
     """Keep current user loaded in session"""
     from models import User
     @login_manager.user_loader
     def load_user(user_id):
         return User.query.get(int(user_id))
+    login_manager.init_app(app)
     ckeditor.init_app(app)
     
     # Register blueprints
