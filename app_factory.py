@@ -6,11 +6,6 @@ import os
 
 db = SQLAlchemy()
 ckeditor = CKEditor()
-
-login_manager = LoginManager()
-login_manager.session_protection = "strong"
-login_manager.login_view = "auth.login"
-login_manager.login_message_category = "info"
     
 
 # Application factory
@@ -26,8 +21,14 @@ def create_app():
     app.config["UPLOAD_FOLDER"] = "static/images/"
     #app.config["UPLOAD_FOLDER"] = "orbitaltech_blog/static/images"
     
-    db.init_app(app)
+    
+    login_manager = LoginManager()
+    login_manager.session_protection = "strong"
+    login_manager.login_view = "auth.login"
+    login_manager.login_message_category = "info"
+    
     login_manager.init_app(app)
+    db.init_app(app)
     ckeditor.init_app(app)
     
     """Keep current user loaded in session"""
@@ -42,5 +43,10 @@ def create_app():
     
     app.register_blueprint(auth)
     app.register_blueprint(views)
+    
+    with app.app_context():
+        db.create_all()
+        # Database migration
+        migrate = Migrate(app, db)
     
     return app
