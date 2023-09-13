@@ -30,6 +30,7 @@ def home():
 
 #View post by id
 @views.route("/posts/<int:id>")
+@login_required
 def post(id):
     post = Post.query.get_or_404(id)
     return render_template("post.html", post=post)
@@ -54,6 +55,7 @@ def publish():
 
 #Edit post by id
 @views.route("/edit/post/<int:id>", methods=["GET", "POST"], strict_slashes=False)
+@login_required
 def edit(id):
     form = PostForm()
     post = Post.query.get_or_404(id)
@@ -79,6 +81,7 @@ def edit(id):
 
 # Delete Post by id
 @views.route("/post/delete/<int:id>")
+@login_required
 def delete(id):
     post = Post.query.get_or_404(id)
     
