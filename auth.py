@@ -1,11 +1,14 @@
 """This module defines the routes for user authentication"""
 from flask import Blueprint, redirect, render_template, flash, url_for
-from models import User
+from models import User, Post
 from forms import LoginForm, SignUpForm
-from app_factory import db
+from app_factory import db, login_manager
 from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
 """Define Blueprint"""
 auth = Blueprint("auth", __name__, url_prefix="/")
